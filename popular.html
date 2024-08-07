@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Most Popular Car Make</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/alpinejs" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="app.js"></script>
+</head>
+<body x-data="carApp" x-init="init()">
+  <header>
+    <h1>Most Popular Car Make</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="add.html">Add Car</a>
+    </nav>
+  </header>
+  <div class="container">
+    <h2>Cars of Make: <span x-text="mostPopularMake"></span></h2>
+    <table x-show="cars.length > 0">
+      <thead>
+        <tr>
+          <th>Color</th>
+          <th>Make</th>
+          <th>Model</th>
+          <th>Registration Number</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <template x-for="car in cars.filter(car => car.make === mostPopularMake)" :key="car.reg_number">
+          <tr>
+            <td x-text="car.color"></td>
+            <td x-text="car.make"></td>
+            <td x-text="car.model"></td>
+            <td x-text="car.reg_number"></td>
+            <td>
+              <a :href="'edit.html?reg_number=' + car.reg_number" class="edit-link">Edit</a>
+              <button class="deleteBtn" @click="deleteCar(car.reg_number)">Delete</button>
+            </td>
+          </tr>
+        </template>
+      </tbody>
+    </table>
+    <div x-show="cars.filter(car => car.make === mostPopularMake).length === 0">
+      No cars of this make found.
+    </div>
+  </div>
+</body>
+</html>

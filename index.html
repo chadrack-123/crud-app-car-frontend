@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Car CRUD Application</title>
+    <script src="https://unpkg.com/alpinejs" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="app.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body x-data="carApp" >
+    <!-- Your UI components will go here -->
+    <header>
+      <h1>Car CRUD Application</h1>
+      <nav>
+        <a href="index.html" class="active">Home</a>
+        <a href="add.html">Add Car</a>
+      </nav>
+    </header>
+    <div class="container">
+      <!-- Add New Car Form -->
+
+      <!-- Update Car Form -->
+
+      <!-- Car List -->
+
+      <section class="car-list">
+        
+        <h2>All Cars</h2>
+        <div x-show="cars.length === 0" class="loading">Loading cars...</div>
+        <div>
+            <h3>Most Popular Car Make:</h3>
+            <a :href="'popular.html?make=' + mostPopularMake" x-text="mostPopularMake"></a>
+          </div>
+        <table x-show="cars.length > 0">
+          <thead>
+            <tr>
+              <th>Color</th>
+              <th>Make</th>
+              <th>Model</th>
+              <th>Registration Number</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <template x-for="car in cars" :key="car.reg_number">
+              <tr>
+                <td x-text="car.color"></td>
+                <td x-text="car.make"></td>
+                <td x-text="car.model"></td>
+                <td x-text="car.reg_number"></td>
+                <td>
+                  <a :href="'edit.html?reg_number=' + car.reg_number" class="edit-link">Edit</a>
+                  <button class="deleteBtn" @click="deleteCar(car.reg_number)">Delete</button>
+                </td>
+              </tr>
+            </template>
+          </tbody>
+        </table>
+      </section>
+    </div>
+    <div id="toast-container">
+        <div id="toast" class="toast"></div>
+      </div>
+  </body>
+</html>

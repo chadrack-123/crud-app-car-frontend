@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Car</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/alpinejs" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="app.js" ></script>
+</head>
+<body x-data="carApp">
+  <header>
+    <h1>Add New Car</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="add.html">Add Car</a>
+    </nav>
+  </header>
+  <div class="container">
+    <form @submit.prevent="createCar">
+        <label>
+          Color:
+          <input type="text" x-model="newCar.color" required>
+        </label>
+        <label>
+          Make:
+          <input type="text" x-model="newCar.make" required>
+        </label>
+        <label>
+          Model:
+          <input type="text" x-model="newCar.model" required>
+        </label>
+        <label>
+          Registration Number:
+          <input type="text" x-model="newCar.reg_number" required>
+        </label>
+        <button type="submit">Add Car</button>
+      </form>
+  </div>
+  <div id="toast-container">
+    <div id="toast" class="toast"></div>
+  </div>
+</body>
+</html>
