@@ -19,7 +19,7 @@ document.addEventListener("alpine:init", () => {
 
       async fetchCars() {
         try {
-          const response = await axios.get("http://localhost:3000/cars");
+          const response = await axios.get("https://car-crud-api-by4p.onrender.com/cars");
 
           this.cars = response.data;
           this.calculateMostPopularMake();
@@ -52,7 +52,7 @@ document.addEventListener("alpine:init", () => {
       async createCar() {
         try {
           const response = await axios.post(
-            "http://localhost:3000/cars",
+            "https://car-crud-api-by4p.onrender.com/cars",
             this.newCar
           );
           this.cars.push(response.data);
@@ -68,7 +68,7 @@ document.addEventListener("alpine:init", () => {
       async updateCar() {
         try {
           const response = await axios.put(
-            `http://localhost:3000/cars/${this.editCar.reg_number}`,
+            `https://car-crud-api-by4p.onrender.com/cars/${this.editCar.reg_number}`,
             this.editCar
           );
           this.cars = this.cars.map((car) =>
@@ -85,7 +85,7 @@ document.addEventListener("alpine:init", () => {
 
       async deleteCar(reg_number) {
         try {
-          await axios.delete(`http://localhost:3000/cars/${reg_number}`);
+          await axios.delete(`https://car-crud-api-by4p.onrender.com/cars/${reg_number}`);
           this.cars = this.cars.filter((car) => car.reg_number !== reg_number);
           this.calculateMostPopularMake();
           this.showToast("Car deleted successfully", "success");
